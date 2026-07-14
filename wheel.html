@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IceBonny Shop | Колесо Фортуны</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(180deg,#071b1d,#0d2b30);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    height:100vh;
+    color:white;
+    overflow:hidden;
+}
+
+h1{
+    color:#00ffb7;
+    font-size:40px;
+    margin-bottom:35px;
+    text-shadow:0 0 15px #00ffb7;
+}
+
+.wheel-box{
+    position:relative;
+    width:420px;
+    height:420px;
+}
+
+.pointer{
+    position:absolute;
+    top:-25px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:60px;
+    z-index:20;
+    color:#fff;
+}
+
+canvas{
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    border:10px solid #00ffb7;
+    box-shadow:0 0 30px rgba(0,255,170,.5);
+    background:#0d2b30;
+}
+
+button{
+    margin-top:40px;
+    padding:18px 60px;
+    font-size:24px;
+    font-weight:bold;
+    border:none;
+    border-radius:16px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#00b894,#00ffb7);
+    color:white;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(0,255,170,.6);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🎁 Колесо Фортуны</h1>
+
+<div class="wheel-box">
+
+    <div class="pointer">▼</div>
+
+    <canvas id="wheel" width="420" height="420"></canvas>
+
+</div>
+
+<button id="spin">🎡 Крутить</button>
+
+<script src="wheel.js"></script>
+
+</body>
+</html>
