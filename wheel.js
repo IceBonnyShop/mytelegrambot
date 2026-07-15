@@ -2,14 +2,14 @@ const canvas = document.getElementById("wheel");
 const ctx = canvas.getContext("2d");
 
 const prizes = [
-    "???",
-    "???",
-    "???",
-    "???",
-    "???",
-    "???",
-    "???",
-    "???"
+    "🎟️ 5% скидка",
+    "🔄 Еще вращение",
+    "❌ Ничего",
+    "🎟️ 10% скидка",
+    "💎 30/80 гемов",
+    "❌ Ничего",
+    "⭐ 15 Stars",
+    "❌ Ничего"
 ];
 
 const colors = [
@@ -88,16 +88,26 @@ document.getElementById("spin").onclick = ()=>{
 
         drawWheel();
 
-        if(speed<0.003){
+        if(speed < 0.003){
 
-            clearInterval(timer);
+    clearInterval(timer);
 
-            spinning=false;
+    spinning = false;
 
-            alert("🎉 Колесо остановилось!");
+    const angle = (Math.PI * 2) / prizes.length;
 
-        }
+    let current =
+    Math.floor(
+        prizes.length -
+        ((rotation % (Math.PI * 2)) / angle)
+    ) % prizes.length;
 
-    },16);
+    alert(
+`🎉 Поздравляем!
 
-};
+Ваш приз:
+
+${prizes[current]}`
+    );
+
+}
