@@ -102,7 +102,7 @@ document.getElementById("spin").onclick = ()=>{
         ((rotation % (Math.PI * 2)) / angle)
     ) % prizes.length;
 
-    alert(
+        alert(
 `🎉 Поздравляем!
 
 Ваш приз:
@@ -110,4 +110,8 @@ document.getElementById("spin").onclick = ()=>{
 ${prizes[current]}`
     );
 
-}
+        }
+
+    }, 16);
+
+};
