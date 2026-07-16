@@ -189,13 +189,15 @@ document.getElementById("spin").onclick = () => {
 
             rotation = endRotation % (Math.PI * 2);
 
-            alert(
-`🎉 Поздравляем!
+            const winBox = document.getElementById("winBox");
+const winPrize = document.getElementById("winPrize");
 
-Ваш приз:
+winPrize.innerHTML = `
+🏆<br><br>
+${prizes[prizeIndex].text}
+`;
 
-${prizes[prizeIndex].text}`
-            );
+winBox.style.display = "flex";
 
         }
 
@@ -208,3 +210,11 @@ ${prizes[prizeIndex].text}`
 drawWheel();
 // Первый рисунок колеса
 drawWheel();
+document.getElementById("claimPrize").onclick = () => {
+
+    document.getElementById("winBox").style.display = "none";
+
+    // Пока просто закрываем окно.
+    // Позже здесь будет отправка приза в Telegram-бот.
+
+};
