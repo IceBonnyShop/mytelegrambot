@@ -23,27 +23,27 @@ const colors = [
     "#26c6da"
 ];
 
+const angle = (Math.PI * 2) / prizes.length;
+
 let rotation = 0;
 let spinning = false;
 
 function drawWheel() {
 
-    const angle = (Math.PI * 2) / prizes.length;
+    ctx.clearRect(0, 0, 420, 420);
 
-    ctx.clearRect(0,0,420,420);
-
-    for(let i=0;i<prizes.length;i++){
+    for (let i = 0; i < prizes.length; i++) {
 
         ctx.beginPath();
 
-        ctx.moveTo(210,210);
+        ctx.moveTo(210, 210);
 
         ctx.arc(
             210,
             210,
             200,
-            angle*i+rotation,
-            angle*(i+1)+rotation
+            i * angle + rotation,
+            (i + 1) * angle + rotation
         );
 
         ctx.fillStyle = colors[i];
@@ -52,71 +52,97 @@ function drawWheel() {
 
         ctx.save();
 
-        ctx.translate(210,210);
+        ctx.translate(210, 210);
 
-        ctx.rotate(angle*i+angle/2+rotation);
+        ctx.rotate(i * angle + angle / 2 + rotation);
 
-        ctx.fillStyle="white";
+        ctx.fillStyle = "white";
 
-        ctx.font="bold 18px Arial";
+        ctx.font = "bold 18px Arial";
 
-        ctx.textAlign="right";
+        ctx.textAlign = "right";
 
-        ctx.fillText(prizes[i],175,8);
+        ctx.fillText(prizes[i], 175, 8);
 
         ctx.restore();
-
     }
 
 }
+function randomPrize() {
 
-drawWheel();
+    const random = Math.random() * 100;
 
-document.getElementById("spin").onclick = ()=>{
+    if (random < 25) return 0;      // 5% скидка
+    if (random < 55) return 1;      // Еще вращение
+    if (random < 65) return 2;      // Ничего
+    if (random < 80) return 3;      // 10% скидка
+    if (random < 85) return 4;      // 30/80 гемов
+    if (random < 90) return 5;      // Ничего
+    if (random < 92) return 6;      // 15 Stars
+    return 7;                       // Ничего
 
-    if(spinning) return;
+}
 
-    spinning=true;
+document.getElementById("spin").onclick = () => {
 
-    let speed=Math.random()*0.4+0.45;
+    if (spinning) return;
 
-    const timer=setInterval(()=>{
+    spinning = true;
 
-        rotation+=speed;
+    const prizeIndex = randomPrize();
 
-        speed*=0.985;
+    const turns = 6;
 
-        drawWheel();
+    const targetRotation =
+        (Math.PI * 2 * turns) +
+        (Math.PI / 2) -
+        (prizeIndex * angle) -
+        (angle / 2);
 
-        if(speed < 0.003){
+    const startRotation = rotation;
 
-    clearInterval(timer);
+    const duration = 5000;
 
-    spinning = false;
+    const startTime = performance.now();
+    function animate(now) {
 
-    const angle = (Math.PI * 2) / prizes.length;
+    const elapsed = now - startTime;
 
-    const normalized =
-(rotation % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+    let progress = elapsed / duration;
 
-const pointerOffset = Math.PI / 2;
+    if (progress > 1) progress = 1;
 
-let current = Math.floor(
-((Math.PI * 2 - normalized + pointerOffset) % (Math.PI * 2)) / angle
-);
+    // Плавное замедление
+    const ease = 1 - Math.pow(1 - progress, 3);
 
-current = current % prizes.length;
+    rotation =
+        startRotation +
+        (targetRotation - startRotation) * ease;
+
+    drawWheel();
+
+    if (progress < 1) {
+
+        requestAnimationFrame(animate);
+
+    } else {
+
+        spinning = false;
 
         alert(
 `🎉 Поздравляем!
 
 Ваш приз:
 
-${prizes[current]}`
-    );
+${prizes[prizeIndex]}`
+        );
 
-        }
+    }
 
-    }, 16);
+}
+
+requestAnimationFrame(animate);
 
 };
+
+drawWheel();
