@@ -52,6 +52,8 @@ const sectorAngle = (Math.PI * 2) / prizes.length;
 
 let rotation = 0;
 let spinning = false;
+let currentPrize = "";
+let currentCode = "";
 function drawWheel() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -192,9 +194,38 @@ document.getElementById("spin").onclick = () => {
             const winBox = document.getElementById("winBox");
 const winPrize = document.getElementById("winPrize");
 
+currentPrize = prizes[prizeIndex].text;
+
+switch(currentPrize){
+
+    case "🎟️ 5% скидка":
+        currentCode = "discount5";
+        break;
+
+    case "🎟️ 10% скидка":
+        currentCode = "discount10";
+        break;
+
+    case "🔄 Еще вращение":
+        currentCode = "spin";
+        break;
+
+    case "💎 30/80 гемов":
+        currentCode = "gems";
+        break;
+
+    case "⭐ 15 Stars":
+        currentCode = "stars";
+        break;
+
+    default:
+        currentCode = "nothing";
+
+}
+
 winPrize.innerHTML = `
 🏆<br><br>
-${prizes[prizeIndex].text}
+${currentPrize}
 `;
 
 winBox.style.display = "flex";
@@ -214,7 +245,7 @@ document.getElementById("claimPrize").onclick = () => {
 
     document.getElementById("winBox").style.display = "none";
 
-    // Пока просто закрываем окно.
-    // Позже здесь будет отправка приза в Telegram-бот.
+    window.location.href =
+        "https://t.me/IceBonnyShopBot?start=" + currentCode;
 
 };
