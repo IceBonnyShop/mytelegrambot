@@ -246,6 +246,6 @@ document.getElementById("claimPrize").onclick = () => {
     document.getElementById("winBox").style.display = "none";
 
     window.location.href =
-        "https://t.me/IceBonnyShopBot?start=" + currentCode;
+        "https://t.me/IceBonnyShop_bot?start=" + currentCode;
 
 };
