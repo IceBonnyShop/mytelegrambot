@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,71 +11,128 @@
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:linear-gradient(180deg,#071b1d,#0d2b30);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    height:100vh;
-    color:white;
-    overflow:hidden;
+
+background:
+linear-gradient(180deg,#06191d,#10363b);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+.container{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
 }
 
 h1{
-    color:#00ffb7;
-    font-size:40px;
-    margin-bottom:35px;
-    text-shadow:0 0 15px #00ffb7;
+
+font-size:42px;
+
+margin-bottom:35px;
+
+color:#00ffb7;
+
+text-shadow:0 0 20px #00ffb7;
+
 }
 
 .wheel-box{
-    position:relative;
-    width:420px;
-    height:420px;
+
+position:relative;
+
+width:430px;
+
+height:430px;
+
 }
 
 .pointer{
-    position:absolute;
-    top:-25px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:60px;
-    z-index:20;
-    color:#fff;
+
+position:absolute;
+
+top:-32px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:65px;
+
+z-index:5;
+
+text-shadow:0 0 20px white;
+
 }
 
 canvas{
-    width:420px;
-    height:420px;
-    border-radius:50%;
-    border:10px solid #00ffb7;
-    box-shadow:0 0 30px rgba(0,255,170,.5);
-    background:#0d2b30;
+
+width:430px;
+
+height:430px;
+
+border-radius:50%;
+
+border:10px solid #00ffb7;
+
+background:#0d2b30;
+
+box-shadow:
+0 0 30px #00ffb766,
+0 0 60px #00ffb733;
+
 }
 
 button{
-    margin-top:40px;
-    padding:18px 60px;
-    font-size:24px;
-    font-weight:bold;
-    border:none;
-    border-radius:16px;
-    cursor:pointer;
-    background:linear-gradient(90deg,#00b894,#00ffb7);
-    color:white;
-    transition:.3s;
+
+margin-top:40px;
+
+padding:18px 70px;
+
+font-size:24px;
+
+font-weight:bold;
+
+border:none;
+
+border-radius:18px;
+
+cursor:pointer;
+
+background:
+linear-gradient(90deg,#00b894,#00ffb7);
+
+color:white;
+
+transition:.25s;
+
 }
 
 button:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 20px rgba(0,255,170,.6);
+
+transform:scale(1.05);
+
 }
 
 </style>
@@ -83,17 +141,134 @@ button:hover{
 
 <body>
 
+<div class="container">
+
 <h1>🎁 Колесо Фортуны</h1>
 
 <div class="wheel-box">
 
-    <div class="pointer">▼</div>
+<div class="pointer">▼</div>
 
-    <canvas id="wheel" width="420" height="420"></canvas>
+<canvas
+id="wheel"
+width="430"
+height="430">
+</canvas>
 
 </div>
 
-<button id="spin">🎡 Крутить</button>
+<button id="spin">
+🎡 Крутить
+</button>
+<div id="winBox" class="win-box">
+
+    <div class="win-card">
+
+        <h2>🎉 Поздравляем!</h2>
+
+        <p id="winPrize">
+            Ваш приз
+        </p>
+
+        <button id="claimPrize">
+            🎁 Забрать приз
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<style>
+
+.win-box{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+background:rgba(0,0,0,.75);
+
+z-index:999;
+
+}
+
+.win-card{
+
+width:380px;
+
+background:#10363b;
+
+border:3px solid #00ffb7;
+
+border-radius:22px;
+
+padding:35px;
+
+text-align:center;
+
+box-shadow:0 0 40px rgba(0,255,183,.5);
+
+animation:popup .35s ease;
+
+}
+
+.win-card h2{
+
+color:#00ffb7;
+
+font-size:34px;
+
+margin-bottom:20px;
+
+}
+
+#winPrize{
+
+font-size:25px;
+
+font-weight:bold;
+
+margin-bottom:30px;
+
+}
+
+#claimPrize{
+
+margin-top:0;
+
+width:100%;
+
+}
+
+@keyframes popup{
+
+from{
+
+opacity:0;
+
+transform:scale(.7);
+
+}
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
+</style>
 
 <script src="wheel.js"></script>
 
