@@ -96,11 +96,16 @@ document.getElementById("spin").onclick = ()=>{
 
     const angle = (Math.PI * 2) / prizes.length;
 
-    let current =
-    Math.floor(
-        prizes.length -
-        ((rotation % (Math.PI * 2)) / angle)
-    ) % prizes.length;
+    const normalized =
+(rotation % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2);
+
+const pointerOffset = Math.PI / 2;
+
+let current = Math.floor(
+((Math.PI * 2 - normalized + pointerOffset) % (Math.PI * 2)) / angle
+);
+
+current = current % prizes.length;
 
         alert(
 `🎉 Поздравляем!
