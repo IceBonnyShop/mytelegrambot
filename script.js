@@ -14,7 +14,7 @@ buttons.forEach((button) => {
     });
 });
 
-const launchDate = new Date("August 15, 2026 18:00:00").getTime();
+const launchDate = new Date("August 31, 2026 00:00:00").getTime();
 
 const startDate = new Date("July 22, 2026 00:00:00").getTime();
 
