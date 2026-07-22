@@ -24,32 +24,6 @@ header {
     gap: 12px;
 }
 
-.support-btn {
-    text-decoration: none;
-
-    background: #0098ff;
-    color: white;
-
-    padding: 12px 22px;
-
-    border-radius: 10px;
-
-    font-weight: bold;
-
-    transition: 0.3s;
-}
-
-.support-btn:hover {
-    background: #0077cc;
-    transform: translateY(-2px);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
 .logo img{
     width:45px;
     height:45px;
@@ -276,4 +250,38 @@ header {
     margin-top:15px;
     color:white;
     font-weight:bold;
+}
+
+.header-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.header-btn{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#4da3ff;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.header-btn:hover{
+
+    background:#2d8cff;
+
+    transform:translateY(-2px);
+
 }
