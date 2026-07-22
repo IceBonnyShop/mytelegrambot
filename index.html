@@ -1,159 +1,201 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IceBonny Shop</title>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
 
-<link rel="stylesheet" href="style.css">
+body{
+    background:#071b1d;
+    color:white;
+}
 
-</head>
-<body>
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-<header>
+    padding: 20px 40px;
+}
 
-<div class="logo">
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-<img src="images/logo.png" alt="Logo">
+.support-btn {
+    text-decoration: none;
 
-<h2>❄️ IceBonny Shop</h2>
+    background: #0098ff;
+    color: white;
 
-</div>
+    padding: 12px 22px;
 
-</header>
+    border-radius: 10px;
 
-<div class="container">
+    font-weight: bold;
 
-<div class="welcome">
+    transition: 0.3s;
+}
 
-<h1>🎮 Магазин игр</h1>
+.support-btn:hover {
+    background: #0077cc;
+    transform: translateY(-2px);
+}
 
-<p>Выберите игру для покупки</p>
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-</div>
+.logo img{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+}
 
-<!-- Brawl Stars -->
+.container{
+    width:90%;
+    max-width:500px;
+    margin:25px auto;
+}
 
-<div class="card">
+.welcome{
+    text-align:center;
+    margin-bottom:25px;
+}
 
-<img src="images/brawl.jpg" alt="Brawl Stars">
+.welcome h1{
+    font-size:30px;
+}
 
-<div class="info">
+.welcome p{
+    color:#9be7d8;
+    margin-top:8px;
+    font-size:17px;
+}
 
-<h2>Brawl Stars</h2>
+/* ---------------- Карточки ---------------- */
 
-<p>💎 Гемы</p>
+.card{
+    background:#10363a;
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:22px;
 
-<p>⚡ Выдача 5–15 минут</p>
+    border:1px solid rgba(0,230,176,.15);
 
-<p>🛡️ Безопасная покупка</p>
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
 
-<button onclick="location.href='brawlstars.html'">
-🛒 Открыть каталог
-</button>
+    transition:all .35s ease;
 
-</div>
+    cursor:pointer;
+}
 
-</div>
+.card:hover{
 
-<!-- Clash Royale -->
+    transform:translateY(-10px) scale(1.03);
 
-<div class="card">
+    box-shadow:
+    0 20px 45px rgba(0,230,176,.30),
+    0 0 30px rgba(0,230,176,.20);
+}
 
-<img src="images/clashroyale.jpg" alt="Clash Royale">
+.card img{
 
-<div class="info">
+    width:100%;
+    height:180px;
 
-<h2>Clash Royale</h2>
+    object-fit:cover;
 
-<p>💎 Алмазы и пропуск</p>
+    transition:transform .35s ease;
+}
 
-<p>⚡ Быстрая выдача</p>
+.card:hover img{
 
-<p>🛡️ Безопасная покупка</p>
+    transform:scale(1.08);
 
-<button>
-🛒 Открыть
-</button>
+}
 
-</div>
+.card h3{
 
-</div>
+    padding:16px;
 
-<!-- Clash of Clans -->
+    font-size:22px;
 
-<div class="card">
+    text-align:center;
+}
 
-<img src="images/clashofclans.jpg" alt="Clash of Clans">
+/* ---------------- Кнопка ---------------- */
 
-<div class="info">
+.card button{
 
-<h2>Clash of Clans</h2>
+    width:calc(100% - 30px);
 
-<p>💎 Пропуск и предложения</p>
+    margin:0 15px 15px;
 
-<p>⚡ Выдача 5–15 минут</p>
+    padding:14px;
 
-<p>🛡️ Безопасная покупка</p>
+    border:none;
 
-<button>
-🛒 Открыть
-</button>
+    border-radius:12px;
 
-</div>
+    background:#00c896;
 
-</div>
-<!-- Hay Day -->
+    color:white;
 
-<div class="card">
+    font-size:17px;
 
-<img src="images/hayday.jpg" alt="Hay Day">
+    font-weight:bold;
 
-<div class="info">
+    cursor:pointer;
 
-<h2>Hay Day</h2>
+    transition:all .30s ease;
 
-<p>💎 Алмазы</p>
+}
 
-<p>⚡ Быстрая выдача</p>
+.card button:hover{
 
-<p>🛡️ Безопасная покупка</p>
+    background:#00e6b0;
 
-<button>
-🛒 Открыть
-</button>
+    transform:scale(1.05);
 
-</div>
+    box-shadow:0 0 25px rgba(0,230,176,.70);
 
-</div>
+}
 
-<!-- Roblox -->
+.card button:active{
 
-<div class="card">
+    transform:scale(.97);
 
-<img src="images/roblox.jpg" alt="Roblox">
+}
 
-<div class="info">
+/* ---------------- Полоса прокрутки ---------------- */
 
-<h2>Roblox</h2>
+::-webkit-scrollbar{
 
-<p>💎 Robux</p>
+    width:8px;
 
-<p>⚡ Выдача 5–15 минут</p>
+}
 
-<p>🛡️ Безопасная покупка</p>
+::-webkit-scrollbar-track{
 
-<button onclick="location.href='roblox.html'">
-🛒 Открыть каталог
-</button>
+    background:#071b1d;
 
-</div>
+}
 
-</div>
+::-webkit-scrollbar-thumb{
 
-</div>
+    background:#00c896;
 
-<script src="script.js"></script>
+    border-radius:20px;
 
-</body>
-</html>
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#00e6b0;
+
+}
