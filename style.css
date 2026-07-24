@@ -285,3 +285,33 @@ header {
     transform:translateY(-2px);
 
 }
+
+.shop-status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+    color:#9cffb3;
+    font-weight:bold;
+}
+
+.online-dot{
+    width:10px;
+    height:10px;
+    background:#2dff5a;
+    border-radius:50%;
+    box-shadow:0 0 10px #2dff5a;
+    animation:pulse 1.5s infinite;
+}
+
+.shop-time{
+    color:#cfcfcf;
+    font-size:14px;
+    margin-top:5px;
+}
+
+@keyframes pulse{
+    0%{opacity:1;}
+    50%{opacity:.4;}
+    100%{opacity:1;}
+}
