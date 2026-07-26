@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VIP</title>
+
+<style>
+
+body{
+
+background:#071b1d;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+margin:0;
+
+font-family:Arial,sans-serif;
+
+color:white;
+
+text-align:center;
+
+}
+
+.box{
+
+animation:fade .5s;
+
+}
+
+.emoji{
+
+font-size:90px;
+
+margin-bottom:20px;
+
+animation:think 2s infinite;
+
+}
+
+h1{
+
+margin-bottom:15px;
+
+}
+
+p{
+
+color:#cfcfcf;
+
+font-size:18px;
+
+line-height:1.6;
+
+}
+
+@keyframes think{
+
+0%{transform:rotate(0deg);}
+25%{transform:rotate(-10deg);}
+50%{transform:rotate(10deg);}
+75%{transform:rotate(-10deg);}
+100%{transform:rotate(0deg);}
+
+}
+
+@keyframes fade{
+
+from{opacity:0;}
+to{opacity:1;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="emoji">🤔</div>
+
+<h1>Хмммм...</h1>
+
+<p>
+
+Тут пока ничего нет 😅
+
+<br><br>
+
+Мы уже работаем над VIP-разделом.
+
+<br><br>
+
+Сейчас вернёмся в главное меню...
+
+</p>
+
+</div>
+
+<script>
+
+setTimeout(function(){
+
+window.location.href="index.html";
+
+},4000);
+
+</script>
+
+</body>
+</html>
