@@ -356,3 +356,44 @@ body > *:not(#particles){
 body{
     overflow-x:hidden;
 }
+/* ===== Плавное появление карточек ===== */
+
+.card{
+    opacity:0;
+    transform:translateY(40px);
+    animation:cardAppear .7s ease forwards;
+}
+
+.card:nth-of-type(1){
+    animation-delay:.1s;
+}
+
+.card:nth-of-type(2){
+    animation-delay:.25s;
+}
+
+.card:nth-of-type(3){
+    animation-delay:.4s;
+}
+
+.card:nth-of-type(4){
+    animation-delay:.55s;
+}
+
+.card:nth-of-type(5){
+    animation-delay:.7s;
+}
+
+@keyframes cardAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
