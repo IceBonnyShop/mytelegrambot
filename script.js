@@ -115,3 +115,13 @@ window.addEventListener("resize",()=>{
     canvas.height=window.innerHeight;
 
 });
+
+window.addEventListener("load", function(){
+
+    setTimeout(function(){
+
+        document.getElementById("loader").classList.add("hide");
+
+    }, 2000);
+
+});
