@@ -519,3 +519,51 @@ body{
     }
 
 }
+.shop-status{
+
+    width:90%;
+    max-width:1200px;
+
+    margin:20px auto;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+}
+
+.shop-status.online{
+
+    background:#103d22;
+
+    color:#8dff9b;
+
+    border:1px solid #29c45a;
+
+}
+
+.shop-status.warning{
+
+    background:#4d430f;
+
+    color:#ffd75c;
+
+    border:1px solid #e0b000;
+
+}
+
+.shop-status.offline{
+
+    background:#4a1515;
+
+    color:#ff8a8a;
+
+    border:1px solid #ff4d4d;
+
+}
