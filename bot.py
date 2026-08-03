@@ -224,8 +224,9 @@ def start(message):
     )
 
     keyboard.row(
-        types.KeyboardButton("💬 Поддержка")
-    )
+    types.KeyboardButton("❓ FAQ"),
+    types.KeyboardButton("💬 Поддержка")
+)
 
     photo = open("images/logo.png", "rb")
 
@@ -329,6 +330,26 @@ def support(message):
         message.chat.id,
         "💬 Поддержка\n\nTelegram: @IceBonnyShop"
     )
+
+
+@bot.message_handler(func=lambda m: m.text == "❓ FAQ")
+def faq(message):
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(
+        types.InlineKeyboardButton(
+            "📖 Открыть FAQ",
+            url="https://icebonnyshop.github.io/mytelegrambot/faq.html"
+        )
+    )
+
+    bot.send_message(
+        message.chat.id,
+        "❓ Часто задаваемые вопросы\n\nНажмите кнопку ниже, чтобы открыть FAQ.",
+        reply_markup=keyboard
+    )
+
     # ==========================
 # ПРОМОКОДЫ
 # ==========================
