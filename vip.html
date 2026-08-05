@@ -89,13 +89,15 @@ h1{
 
 }
 
-button{
+.buy-btn{
+
+    display:inline-block;
 
     background:#ffd700;
 
     color:black;
 
-    border:none;
+    text-decoration:none;
 
     padding:15px 35px;
 
@@ -105,9 +107,13 @@ button{
 
     font-weight:bold;
 
-    cursor:pointer;
-
     transition:.3s;
+
+}
+
+.buy-btn:hover{
+
+    transform:scale(1.05);
 
 }
 
@@ -138,9 +144,7 @@ button:hover{
 <h1>👑 VIP IceBonny</h1>
 
 <p class="subtitle">
-
 Получите доступ к эксклюзивным возможностям магазина.
-
 </p>
 
 <div class="features">
@@ -158,31 +162,14 @@ button:hover{
 </div>
 
 <div class="price">
-
-⭐ 1 Stars
-
+⭐ 1 Star (Тест)
 </div>
 
-<button onclick="buyVip()">
-
-⭐ Купить за 1 Stars
-
-</button>
-
-<p id="message"></p>
+<a href="https://t.me/IceBonnyShop_bot?start=vip" class="buy-btn">
+⭐ Купить за 1 Star
+</a>
 
 </div>
-
-<script>
-
-function buyVip(){
-
-document.getElementById("message").innerHTML=
-"🚧 Оплата через Telegram Stars пока недоступна.<br><br>Мы уже работаем над подключением VIP 👑";
-
-}
-
-</script>
 
 </body>
 </html>
