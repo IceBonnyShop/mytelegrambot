@@ -11,7 +11,7 @@ import os
 # НАСТРОЙКИ
 # ==========================
 
-TOKEN = "8793105635:AAEP_zCJXx9XkP-M0CwlkgBW83s-LeSSsM0"
+TOKEN = "8793105635:AAFJkkXRKoLldljCTJwwD7IH_L46IRhbbaU"
 
 ADMIN_ID = 5508951976
 
