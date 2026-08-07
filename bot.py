@@ -166,9 +166,9 @@ def start(message):
 """
                 )
 
-    # ==========================
-    # ПОКУПКА ROBUX
-    # ==========================
+# ==========================
+# ПОКУПКА ROBUX
+# ==========================
 
     if args in ROBLOX_PRODUCTS:
 
@@ -207,149 +207,37 @@ def start(message):
             reply_markup=keyboard
         )
 
+        keyboard_user = types.InlineKeyboardMarkup()
+
+        keyboard_user.add(
+            types.InlineKeyboardButton(
+                "💬 Написать администратору",
+                url="https://t.me/HANDPTT"
+            )
+        )
+
         bot.send_message(
             message.chat.id,
-            "✅ Заявка отправлена администратору.\n\nОжидайте ответа."
+            f"""✅ Заявка успешно создана!
+
+🎮 Товар:
+{product}
+
+━━━━━━━━━━━━━━
+
+Что делать дальше?
+
+1️⃣ Нажмите кнопку ниже.
+2️⃣ Напишите администратору.
+3️⃣ Отправьте 🎁 подарок на сумму выбранного товара.
+4️⃣ После проверки оплаты вы получите товар.
+
+Спасибо за выбор IceBonny Shop ❤️
+""",
+            reply_markup=keyboard_user
         )
 
         return
-
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-
-    keyboard.add(types.KeyboardButton("🛒 Магазин"))
-
-    keyboard.row(
-        types.KeyboardButton("🎁 Промокоды"),
-        types.KeyboardButton("👤 Профиль")
-    )
-
-    keyboard.row(
-    types.KeyboardButton("❓ FAQ"),
-    types.KeyboardButton("💬 Поддержка")
-)
-
-    photo = open("images/logo.png", "rb")
-
-    bot.send_photo(
-        message.chat.id,
-        photo,
-        caption="""
-        
-👋 Добро пожаловать в IceBonny Shop!
-
-Ваш надёжный магазин игровых товаров.
-
-━━━━━━━━━━━━━━━━━━
-
-⚡ Выдача за несколько минут
-
-🛡️ Безопасные покупки
-
-💎 Лучшие предложения
-
-🎁 Регулярные акции и бонусы
-
-━━━━━━━━━━━━━━━━━━
-
-🎮 Выберите нужный раздел ниже и начните покупки.
-""",
-        reply_markup=keyboard
-    )
-    # ==========================
-# МАГАЗИН
-# ==========================
-
-@bot.message_handler(func=lambda m: m.text == "🛒 Магазин")
-def shop(message):
-
-    keyboard = types.InlineKeyboardMarkup()
-
-    keyboard.add(
-        types.InlineKeyboardButton(
-            "🌐 Перейти в магазин",
-            url="https://icebonnyshop.github.io/mytelegrambot/"
-        )
-    )
-
-    bot.send_message(
-        message.chat.id,
-        "🛒 *IceBonny Shop*\n\nНажмите кнопку ниже, чтобы открыть магазин.",
-        parse_mode="Markdown",
-        reply_markup=keyboard
-    )
-
-
-# ==========================
-# ПРОФИЛЬ
-# ==========================
-
-@bot.message_handler(func=lambda m: m.text == "👤 Профиль")
-def profile(message):
-
-    purchases = 0
-
-    if message.from_user.id in orders:
-        purchases = 1
-
-    invited = referrals.get(message.from_user.id, 0)
-
-    bot.send_message(
-        message.chat.id,
-        f"""👤 Ваш профиль
-
-🆔 ID:
-{message.from_user.id}
-
-👤 Имя:
-{message.from_user.first_name}
-
-💰 Баланс:
-0 ⭐
-
-🛍 Заказов:
-{purchases}
-
-👥 Приглашено друзей:
-{invited}
-
-🔗 Ваша реферальная ссылка:
-
-https://t.me/{BOT_USERNAME}?start={message.from_user.id}
-"""
-    )
-
-
-# ==========================
-# ПОДДЕРЖКА
-# ==========================
-
-@bot.message_handler(func=lambda m: m.text == "💬 Поддержка")
-def support(message):
-
-    bot.send_message(
-        message.chat.id,
-        "💬 Поддержка\n\nTelegram: @IceBonnyShop"
-    )
-
-
-@bot.message_handler(func=lambda m: m.text == "❓ FAQ")
-def faq(message):
-
-    keyboard = types.InlineKeyboardMarkup()
-
-    keyboard.add(
-        types.InlineKeyboardButton(
-            "📖 Открыть FAQ",
-            url="https://icebonnyshop.github.io/mytelegrambot/faq.html"
-        )
-    )
-
-    bot.send_message(
-        message.chat.id,
-        "❓ Часто задаваемые вопросы\n\nНажмите кнопку ниже, чтобы открыть FAQ.",
-        reply_markup=keyboard
-    )
-
     # ==========================
 # ПРОМОКОДЫ
 # ==========================
