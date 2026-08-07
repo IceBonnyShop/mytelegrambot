@@ -405,6 +405,7 @@ def check_promocode(message):
             "❌ Такого промокода не существует."
         )
 
+        del waiting_promocode[message.from_user.id]
         return
 
     if message.from_user.id not in used_promocodes:
@@ -418,7 +419,6 @@ def check_promocode(message):
         )
 
         del waiting_promocode[message.from_user.id]
-
         return
 
     used_promocodes[message.from_user.id].append(code)
