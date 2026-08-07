@@ -120,7 +120,6 @@ def start(message):
         prize = codes[args]
 
         del codes[args]
-
         save_codes(codes)
 
         bot.send_message(
@@ -133,7 +132,6 @@ def start(message):
 
 Спасибо за участие ❤️"""
         )
-
         return
 
     # ==========================
@@ -166,9 +164,9 @@ def start(message):
 """
                 )
 
-# ==========================
-# ПОКУПКА ROBUX
-# ==========================
+    # ==========================
+    # ПОКУПКА ROBUX
+    # ==========================
 
     if args in ROBLOX_PRODUCTS:
 
@@ -238,6 +236,48 @@ def start(message):
         )
 
         return
+
+    # ==========================
+    # ГЛАВНОЕ МЕНЮ
+    # ==========================
+
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+
+    keyboard.add(types.KeyboardButton("🛒 Магазин"))
+
+    keyboard.row(
+        types.KeyboardButton("🎁 Промокоды"),
+        types.KeyboardButton("👤 Профиль")
+    )
+
+    keyboard.row(
+        types.KeyboardButton("❓ FAQ"),
+        types.KeyboardButton("💬 Поддержка")
+    )
+
+    photo = open("images/logo.png", "rb")
+
+    bot.send_photo(
+        message.chat.id,
+        photo,
+        caption="""👋 Добро пожаловать в IceBonny Shop!
+
+Ваш надёжный магазин игровых товаров.
+
+━━━━━━━━━━━━━━━━━━
+
+⚡ Выдача за несколько минут
+🛡️ Безопасные покупки
+💎 Лучшие предложения
+🎁 Регулярные акции и бонусы
+
+━━━━━━━━━━━━━━━━━━
+
+🎮 Выберите нужный раздел ниже и начните покупки.
+""",
+        reply_markup=keyboard
+    )
+
     # ==========================
 # ПРОМОКОДЫ
 # ==========================
@@ -252,6 +292,106 @@ def promo(message):
         "🎁 Введите промокод:"
     )
 
+# ==========================
+# МАГАЗИН
+# ==========================
+
+@bot.message_handler(func=lambda m: m.text == "🛒 Магазин")
+def shop(message):
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(
+        types.InlineKeyboardButton(
+            "🌐 Перейти в магазин",
+            url="https://icebonnyshop.github.io/mytelegrambot/"
+        )
+    )
+
+    bot.send_message(
+        message.chat.id,
+        "🛒 *IceBonny Shop*\n\nНажмите кнопку ниже, чтобы открыть магазин.",
+        parse_mode="Markdown",
+        reply_markup=keyboard
+    )
+
+
+# ==========================
+# ПРОФИЛЬ
+# ==========================
+
+@bot.message_handler(func=lambda m: m.text == "👤 Профиль")
+def profile(message):
+
+    purchases = 0
+
+    if message.from_user.id in orders:
+        purchases = 1
+
+    invited = referrals.get(message.from_user.id, 0)
+
+    bot.send_message(
+        message.chat.id,
+        f"""👤 Ваш профиль
+
+🆔 ID:
+{message.from_user.id}
+
+👤 Имя:
+{message.from_user.first_name}
+
+💰 Баланс:
+0 ⭐
+
+🛍 Заказов:
+{purchases}
+
+👥 Приглашено друзей:
+{invited}
+
+🔗 Ваша реферальная ссылка:
+
+https://t.me/{BOT_USERNAME}?start={message.from_user.id}
+"""
+    )
+
+
+# ==========================
+# ПОДДЕРЖКА
+# ==========================
+
+@bot.message_handler(func=lambda m: m.text == "💬 Поддержка")
+def support(message):
+
+    bot.send_message(
+        message.chat.id,
+        "💬 Поддержка\n\nTelegram: @IceBonnyShop"
+    )
+
+
+# ==========================
+# FAQ
+# ==========================
+
+@bot.message_handler(func=lambda m: m.text == "❓ FAQ")
+def faq(message):
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    keyboard.add(
+        types.InlineKeyboardButton(
+            "📖 Открыть FAQ",
+            url="https://icebonnyshop.github.io/mytelegrambot/faq.html"
+        )
+    )
+
+    bot.send_message(
+        message.chat.id,
+        "❓ Часто задаваемые вопросы\n\nНажмите кнопку ниже, чтобы открыть FAQ.",
+        reply_markup=keyboard
+    )
+
+    waiting_promocode[message.from_user.id] = True
 
 @bot.message_handler(func=lambda m: m.from_user.id in waiting_promocode)
 def check_promocode(message):
